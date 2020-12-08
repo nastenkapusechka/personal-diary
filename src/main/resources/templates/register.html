@@ -11,7 +11,9 @@
 <div class="container">
     <div class="py-5 text-center">
         <h2>Signing up</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <p class="lead">Here we need a  bit info about you. It is first name - it shouldn't be empty(including spaces),
+        last name - like first name, username - it may be your email or unique nickname (and, of course, it shouldn't be empty),
+         password - at least 8 symbols and gender .)</p>
     </div>
 
     <div class="row">
@@ -36,8 +38,8 @@
                     <label for="username">Username</label>
                     <div class="input-group">
                         <input type="text" th:field="*{username}" th:value="${user.username}" class="form-control" name="username" id="username" placeholder="Username" required="">
-                        <small class="text-danger" th:each="err : ${#fields.errors('username')}" th:text="${err}"></small>
                     </div>
+                    <small class="text-danger" th:each="err : ${#fields.errors('username')}" th:text="${err}"></small>
                 </div>
 
 <!--                <div class="mb-3">-->
@@ -48,24 +50,30 @@
                 <div class="mb-3">
                     <label for="password">Password</label>
                     <input type="password" th:field="*{password}" th:value="${user.password}" class="form-control" name="password" id="password" placeholder="Password" required="">
-                    <small class="text-danger" th:each="err : ${#fields.errors('password')}" th:text="${err}"></small>
+<!--                    <small class="text-danger" th:each="err : ${#fields.errors('password')}" th:text="${err}"></small>-->
+                    <div th:each="err : ${#fields.errors('password')}">
+                        <small class="text-danger" th:text="${err}"></small>
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="passwordAgain">Repeat password</label>
                     <input type="password" th:field="*{repeatPassword}" th:value="${user.repeatPassword}" class="form-control" name="passwordAgain" id="passwordAgain" placeholder="Repeat password" required="">
-                    <small class="text-danger" th:each="err : ${#fields.errors('repeatPassword')}" th:text="${err}"></small>
+<!--                    <small class="text-danger" th:each="err : ${#fields.errors('repeatPassword')}" th:text="${err}"></small>-->
+                    <div th:each="err : ${#fields.errors('repeatPassword')}">
+                        <small class="text-danger" th:text="${err}"></small>
+                    </div>
                 </div>
 
                 <h4 class="mb-3">Gender</h4>
                 <div class="d-block my-3">
                     <div class="custom-control custom-radio">
                         <input id="genderMan" th:field="*{gender}" value="M" name="gender" type="radio" class="custom-control-input" checked required="">
-                        <label class="custom-control-label" for="genderMan">Man</label>
+                        <label class="custom-control-label" for="genderMan">Male</label>
                     </div>
                     <div class="custom-control custom-radio">
                         <input id="genderWoman" th:field="*{gender}" value="W" name="gender" type="radio" class="custom-control-input" required="">
-                        <label class="custom-control-label" for="genderWoman">Woman</label>
+                        <label class="custom-control-label" for="genderWoman">Female</label>
                     </div>
                     <div class="custom-control custom-radio">
                         <input id="dont_know" th:field="*{gender}" value="?" name="gender" type="radio" class="custom-control-input" required="">

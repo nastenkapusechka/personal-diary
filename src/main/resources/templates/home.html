@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <style>
+        body { background: url(https://img3.akspic.ru/image/45515-les-derevo-priroda-lesistaya_mestnost-rastitelnost-2048x1152.jpg); }
+    </style>
 </head>
 <body>
 <div th:insert="blocks/header"></div>
-<div class="container">
-    <div class="card text-center">
+<div class="container bg-light mt-5">
+    <div class="text-center">
         <div class="card-header">
             Info
         </div>
         <div class="card-body">
             <h5 class="card-title">A bit about you)</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <p class="card-text" th:text=" 'Hello, ' + ${user.firstName} + ' ' + ${user.lastName} + '!' "></p>
+            <p class="card-text" th:text=" 'Your nickname is ' + ${user.username}"></p>
+            <small class="card-text" th:text=" '(P.s. gender is ' + ${user.gender} + ')' "></small>
+            <p class="card-text" th:text=" 'In your secret-personal-diary there are ' + ${secretsSize} + ' mysteries!' "></p>
         </div>
-        <div class="card-footer text-muted">
-            2 days ago
-        </div>
+        <div class="card-footer text-muted" th:text=" 'You have register in our application on ' + ${user.registrationDate}"></div>
     </div>
 </div>
 <div th:insert="blocks/footer"></div>

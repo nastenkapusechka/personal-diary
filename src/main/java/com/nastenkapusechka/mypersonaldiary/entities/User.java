@@ -6,6 +6,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -32,17 +33,17 @@ public class User {
     @Size(min = 8, message = "Too short. <8 symbols")
     private String repeatPassword;
 
-    @NotBlank
+    @NotBlank(message = "First name is empty!")
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "Last name is empty!")
     private String lastName;
-    //private LocalDate birth;
+    private LocalDate registrationDate;
     private char gender;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Secret> secretList;
 
-    /*{
-        this.birth = LocalDate.now();
-    }*/
+    {
+        this.registrationDate = LocalDate.now();
+    }
 }

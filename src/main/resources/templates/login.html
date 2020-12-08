@@ -12,7 +12,7 @@
         <img class="mb-4" src="https://memepedia.ru/wp-content/uploads/2017/08/%D0%BC%D0%B5%D0%BC-%D1%81%D0%B8%D1%8F%D0%BD%D0%B8%D0%B5-1.jpg" alt="" width="125" height="92">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address or nikname" required="" autofocus="">
+        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address or nickname" required="" autofocus="">
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="">
 <!--        <div class="checkbox mb-3">-->
@@ -21,6 +21,10 @@
 <!--            </label>-->
 <!--        </div>-->
         <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign in</button>
+<!--        <form th:action="@{/register}" method="get">-->
+        <a th:href="@{/register}" class="btn btn-lg btn-primary btn-block mt-3" >Sign up</a>
+<!--        </form>-->
     </form>
+
 </body>
 </html>

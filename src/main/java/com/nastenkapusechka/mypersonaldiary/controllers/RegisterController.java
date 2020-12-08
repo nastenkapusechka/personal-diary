@@ -44,8 +44,6 @@ public class RegisterController {
     @PostMapping("/register")
     public String registerUser(@ModelAttribute @Validated User user, BindingResult bindingResult) {
 
-        System.out.println(user);
-
         if (!user.getPassword().equals(user.getRepeatPassword())) {
             //bindingResult.addError(new ObjectError("repeatPassword", "Password invalid!"));
             bindingResult.rejectValue("repeatPassword", "", "Passwords aren't equals!");
@@ -63,6 +61,9 @@ public class RegisterController {
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setFirstName(user.getFirstName().trim());
+        user.setLastName(user.getLastName().trim());
+        user.setUsername(user.getUsername().trim());
         User info = repository.save(user);
         log.info("User {} saved", info.getId());
         return "redirect:/login";

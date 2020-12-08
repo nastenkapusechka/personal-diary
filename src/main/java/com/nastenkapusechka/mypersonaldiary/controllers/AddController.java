@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Optional;
 
 
 @Controller
@@ -48,17 +47,14 @@ public class AddController {
 
         if (result.hasErrors()) return "add";
 
-        Optional<Secret> s = secretRepository.findById(secret.getId());
+        System.out.println(secret.getId());
 
-        if (s.isPresent()) {
-            log.info("Saving secret: secret id={} is already present in db", s.get().getId());
-            Secret mySecret = s.get();
-            mySecret.setTitle(secret.getTitle());
-            mySecret.setContent(secret.getContent());
-            secretRepository.deleteById(mySecret.getId());
-            log.info("Secret deleted by id");
-            secretRepository.save(mySecret);
-            log.info("Edited secret saved");
+        if (secretRepository.existsById(secret.getId())) {
+
+            Secret s = secretRepository.findById(secret.getId()).get();
+            s.setTitle(secret.getTitle());
+            s.setContent(secret.getContent());
+            secretRepository.save(s);
 
             return "redirect:/show";
         }
