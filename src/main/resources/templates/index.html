@@ -1,45 +1,32 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Home</title>
+    <title>Personal diary</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="jumbotron">
     <div class="container">
-        <h1 class="display-3">Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <h1 class="display-3">My personal diary</h1>
+        <p>To be specific, your own personal diary. You may share secrets, and nobody will know about them! Your secrets under the good security of our application. One more ->>> you can like owr application (blue button), but you can press it as much as you like. Join!) </p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Like it!!! »</a></p>
     </div>
 </div>
 <div class="container">
-
-
     <div class="row">
         <div class="col-md-4">
-            <h2>hi</h2>
-            <p>dfghjkl</p>
-            <p><a class="btn btn-secondary" th:href="@{/add}" role="button">View details »</a></p>
-        </div>
-
-
-
-        <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            <h2>Sign in</h2>
+            <p>Are you already in our system? Let's share secrets! (P.s. so, keep everything in oneself may be harmful)</p>
+            <p><a class="btn btn-outline-primary" href="/login" role="button">Signing in »</a></p>
         </div>
         <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            <h2>Sign up</h2>
+            <p>Are you not with us yet? Push this button faster!!! Take an opportunity take your own personal diary! (P.s. ---> very secret)</p>
+            <p><a class="btn btn-outline-primary" href="/register" role="button">Signing up »</a></p>
         </div>
     </div>
-    <hr>
-    <footer class="container">
-        <p>© Your own personal diary ^-^. 2020</p>
-    </footer>
+    <div th:insert="blocks/footer"></div>
 </div>
 </body>
 </html>

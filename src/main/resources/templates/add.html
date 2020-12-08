@@ -6,20 +6,22 @@
     <title>Add a secret</title>
 </head>
 <body>
+<div th:insert="blocks/header"></div>
 <div class="container mt-5">
     <form th:action="@{/add}" method="post" th:object="${secret}">
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" th:field="*{title}"  class="form-control" id="title" placeholder="Enter title">
+            <input type="text" th:field="*{title}" th:value="*{title}"  class="form-control" id="title" placeholder="Enter title">
             <small class="form-text text-danger" th:each="err : ${#fields.errors('title')}" th:text="${err}"></small>
         </div>
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea class="form-control" th:field="*{content}"  id="content" placeholder="Content"></textarea>
+            <textarea class="form-control" th:field="*{content}" th:value="*{content}"  id="content" placeholder="Content"></textarea>
             <small class="form-text text-danger" th:each="err : ${#fields.errors('content')}" th:text="${err}"></small>
         </div>
         <button type="submit" class="btn btn-primary">Save my secret</button>
     </form>
 </div>
+<div th:insert="blocks/footer"></div>
 </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://getbootstrap.com/docs/4.1/examples/checkout/form-validation.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Signing up</h2>
+        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 order-md-1">
+            <h4 class="mb-3">About you</h4>
+
+            <form class="needs-validation" novalidate="" th:action="@{/register}" method="post" th:object="${user}">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">First name</label>
+                        <input type="text" th:field="*{firstName}" th:value="${user.firstName}" class="form-control" id="firstName" placeholder="First name" value="" required="">
+                        <small class="text-danger" th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Last name</label>
+                        <input type="text" th:field="*{lastName}" th:value="${user.lastName}" class="form-control" id="lastName" placeholder="Last name" value="" required="">
+                        <small class="text-danger" th:each="err : ${#fields.errors('lastName')}" th:text="${err}">  </small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <input type="text" th:field="*{username}" th:value="${user.username}" class="form-control" name="username" id="username" placeholder="Username" required="">
+                        <small class="text-danger" th:each="err : ${#fields.errors('username')}" th:text="${err}"></small>
+                    </div>
+                </div>
+
+<!--                <div class="mb-3">-->
+<!--                    <label for="birth">Your birthday</label>-->
+<!--                    <input type="date" th:field="*{birth}" class="form-control" id="birth">-->
+<!--                </div>-->
+
+                <div class="mb-3">
+                    <label for="password">Password</label>
+                    <input type="password" th:field="*{password}" th:value="${user.password}" class="form-control" name="password" id="password" placeholder="Password" required="">
+                    <small class="text-danger" th:each="err : ${#fields.errors('password')}" th:text="${err}"></small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="passwordAgain">Repeat password</label>
+                    <input type="password" th:field="*{repeatPassword}" th:value="${user.repeatPassword}" class="form-control" name="passwordAgain" id="passwordAgain" placeholder="Repeat password" required="">
+                    <small class="text-danger" th:each="err : ${#fields.errors('repeatPassword')}" th:text="${err}"></small>
+                </div>
+
+                <h4 class="mb-3">Gender</h4>
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input id="genderMan" th:field="*{gender}" value="M" name="gender" type="radio" class="custom-control-input" checked required="">
+                        <label class="custom-control-label" for="genderMan">Man</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="genderWoman" th:field="*{gender}" value="W" name="gender" type="radio" class="custom-control-input" required="">
+                        <label class="custom-control-label" for="genderWoman">Woman</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="dont_know" th:field="*{gender}" value="?" name="gender" type="radio" class="custom-control-input" required="">
+                        <label class="custom-control-label" for="dont_know">I don't know</label>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div th:insert="blocks/footer"></div>
+</body>
+</html>
