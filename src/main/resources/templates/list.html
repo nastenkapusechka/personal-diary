@@ -25,7 +25,9 @@
                 <th scope="row" class="text-dark" th:text="${secret.title}"></th>
                 <td th:text="${secret.dateOfCreating}"></td>
                 <td><a th:href="@{ '/show/details/' + ${secret.id} }" class="btn btn-outline-warning">More...)</a></td>
-                <td><a th:href="@{ '/show/delete/' + ${secret.id} }" class="btn btn-outline-danger" id="delete">Delete!!!</a></td>
+                <td><a th:value="${secret.id}" class="btn btn-outline-danger" onclick="confirmDelete()">Delete!!!</a></td>
+<!--                <td class="text-white" type="hidden" id="delete" th:text="${secret.id}"></td>-->
+                <input type="hidden" id="delete" th:value="${secret.id}">
             </tr>
         </tbody>
     </table>
@@ -47,6 +49,15 @@
                     tr[i].style.display = "none";
                 }
             }
+        }
+    }
+</script>
+<script>
+    function confirmDelete() {
+        if (confirm("Are you sure to delete your secret?")) {
+            // let secretId = document.getElementById('delete').innerText;
+            let secretId = document.getElementById('delete').value;
+            location.href = '/show/delete/' + secretId;
         }
     }
 </script>
