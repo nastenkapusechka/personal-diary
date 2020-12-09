@@ -22,9 +22,12 @@ public class Secret {
 
     @NotBlank(message = "Title shouldn't be empty!")
     private String title;
+
     @NotBlank(message = "Content shouldn't be empty!")
-    @Size(max = 255, message = "Too long. >255 symbols")
+    @Size(max = 1000, message = "Too long. >1000 symbols")
+    @Column(length = 1000)
     private String content;
+
     @Column(name = "date_of_creation")
     private LocalDate dateOfCreating;
 

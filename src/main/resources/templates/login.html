@@ -5,26 +5,44 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://getbootstrap.com/docs/4.1/examples/sign-in/signin.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body class="text-center mb-5">
     <form class="form-signin" th:action="@{/login}" method="post">
         <img class="mb-4" src="https://memepedia.ru/wp-content/uploads/2017/08/%D0%BC%D0%B5%D0%BC-%D1%81%D0%B8%D1%8F%D0%BD%D0%B8%D0%B5-1.jpg" alt="" width="125" height="92">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
+        <label for="inputEmail" class="sr-only">Email address or nickname</label>
         <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address or nickname" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <small class="text-danger" th:if="${error} == true">Invalid email or password!</small>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" id="password" class="form-control mt-3" placeholder="Password" required="">
+
+        <button class="btn btn-lg btn-warning btn-block mt-3" type="button" onclick="watch()" id="eye">Show password <i class="far fa-eye"></i></button>
+        <button class="btn btn-lg btn-warning btn-block mt-3" type="button" style="display:none" id="closed_eye" onclick="watch()">Hide password <i class="far fa-eye-slash"></i></button>
 <!--        <div class="checkbox mb-3">-->
 <!--            <label>-->
 <!--                <input type="checkbox" value="remember-me"> Remember me-->
 <!--            </label>-->
 <!--        </div>-->
         <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign in</button>
-<!--        <form th:action="@{/register}" method="get">-->
         <a th:href="@{/register}" class="btn btn-lg btn-primary btn-block mt-3" >Sign up</a>
-<!--        </form>-->
     </form>
 
 </body>
+<script>
+    function watch () {
+        let elem = document.getElementById('password');
+        if (elem.type === 'password') {
+            elem.type = 'text';
+            document.getElementById('closed_eye').style.display='block';
+            document.getElementById('eye').style.display='none';
+        } else {
+            elem.type = 'password';
+            document.getElementById('closed_eye').style.display='none';
+            document.getElementById('eye').style.display='block';
+        }
+    }
+</script>
+
 </html>

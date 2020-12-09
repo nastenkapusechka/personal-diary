@@ -47,8 +47,6 @@ public class AddController {
 
         if (result.hasErrors()) return "add";
 
-        System.out.println(secret.getId());
-
         if (secretRepository.existsById(secret.getId())) {
 
             Secret s = secretRepository.findById(secret.getId()).get();

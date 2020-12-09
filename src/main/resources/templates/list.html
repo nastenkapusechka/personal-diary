@@ -11,22 +11,21 @@
 <div class="container mt-5">
     <label for="usersInput">Filter by title</label>
     <input class="form-control" type="text" placeholder="Search for titles.." id="usersInput" onkeyup="filterTable()">
-<!--    <<h3 th:if="${secrets.size() == 0}" class="text-center text-danger">Nothing</h3>-->
     <table class="table mt-2" id="myTable">
-        <thread>
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Date of creation</th>
-                <th scope="col">Contents</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thread>
+<!--        <thread>-->
+<!--            <tr>-->
+<!--                <th scope="col">Title</th>-->
+<!--                <th scope="col">Date of creation</th>-->
+<!--                <th scope="col">Contents</th>-->
+<!--                <th scope="col">Actions</th>-->
+<!--            </tr>-->
+<!--        </thread>-->
         <tbody th:each="secret : ${secrets}">
             <tr>
                 <th scope="row" class="text-dark" th:text="${secret.title}"></th>
                 <td th:text="${secret.dateOfCreating}"></td>
                 <td><a th:href="@{ '/show/details/' + ${secret.id} }" class="btn btn-outline-warning">More...)</a></td>
-                <td><a th:href="@{ '/show/delete/' + ${secret.id} }" class="btn btn-outline-danger">Delete!!!</a></td>
+                <td><a th:href="@{ '/show/delete/' + ${secret.id} }" class="btn btn-outline-danger" id="delete">Delete!!!</a></td>
             </tr>
         </tbody>
     </table>
@@ -38,7 +37,7 @@
         filter = input.value.toUpperCase();
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
-        for (i = 1; i < tr.length; i++) {
+        for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("th")[0];
             if (td) {
                 txtValue = td.textContent || td.innerText;

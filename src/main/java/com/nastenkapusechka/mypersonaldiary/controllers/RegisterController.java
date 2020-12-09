@@ -2,6 +2,7 @@ package com.nastenkapusechka.mypersonaldiary.controllers;
 
 import com.nastenkapusechka.mypersonaldiary.entities.User;
 import com.nastenkapusechka.mypersonaldiary.repo.UserRepository;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Controller
@@ -41,11 +43,11 @@ public class RegisterController {
         return "register";
     }
 
+    @SneakyThrows
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute @Validated User user, BindingResult bindingResult) {
+    public String registerUser(@ModelAttribute @Validated User user, BindingResult bindingResult, HttpServletRequest request) {
 
         if (!user.getPassword().equals(user.getRepeatPassword())) {
-            //bindingResult.addError(new ObjectError("repeatPassword", "Password invalid!"));
             bindingResult.rejectValue("repeatPassword", "", "Passwords aren't equals!");
             log.info("Add error - passwords are different");
         }
@@ -66,6 +68,7 @@ public class RegisterController {
         user.setUsername(user.getUsername().trim());
         User info = repository.save(user);
         log.info("User {} saved", info.getId());
+
         return "redirect:/login";
     }
 }
