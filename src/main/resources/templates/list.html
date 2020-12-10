@@ -9,8 +9,9 @@
 <body>
 <div th:insert="blocks/header"></div>
 <div class="container mt-5">
-    <label for="usersInput">Filter by title</label>
+    <label for="usersInput" id="label">Filter by title</label>
     <input class="form-control" type="text" placeholder="Search for titles.." id="usersInput" onkeyup="filterTable()">
+    <h3 class="text-danger" th:if="${secrets.isEmpty()}">You have nothing yet!</h3>
     <table class="table mt-2" id="myTable">
 <!--        <thread>-->
 <!--            <tr>-->

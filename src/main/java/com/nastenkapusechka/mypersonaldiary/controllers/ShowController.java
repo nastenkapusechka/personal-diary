@@ -1,5 +1,6 @@
 package com.nastenkapusechka.mypersonaldiary.controllers;
 
+import com.nastenkapusechka.mypersonaldiary.entities.Secret;
 import com.nastenkapusechka.mypersonaldiary.repo.SecretRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class ShowController {
@@ -24,7 +26,8 @@ public class ShowController {
 
     @GetMapping("/show")
     public String getSecrets(Model model, Principal principal) {
-        model.addAttribute("secrets", repository.findByUserUsername(principal.getName()));
+        List<Secret> secrets = repository.findByUserUsername(principal.getName());
+        model.addAttribute("secrets", secrets);
         log.info("Return page with secrets (owner = user with username {})", principal.getName());
         return "list";
     }
