@@ -4,8 +4,7 @@ import com.nastenkapusechka.mypersonaldiary.entities.Like;
 import com.nastenkapusechka.mypersonaldiary.entities.Secret;
 import com.nastenkapusechka.mypersonaldiary.entities.User;
 import com.nastenkapusechka.mypersonaldiary.repo.LikesRepository;
-import com.nastenkapusechka.mypersonaldiary.repo.SecretRepository;
-import com.nastenkapusechka.mypersonaldiary.repo.UserRepository;
+import com.nastenkapusechka.mypersonaldiary.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,23 +16,13 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    private UserRepository userRepository;
-    private SecretRepository secretRepository;
-    private LikesRepository likesRepository;
+    private final LikesRepository likesRepository;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public void setLikesRepository(LikesRepository likesRepository) {
+    public MainController(LikesRepository likesRepository, UserServiceImpl userService) {
         this.likesRepository = likesRepository;
-    }
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    @Autowired
-    public void setSecretRepository(SecretRepository secretRepository) {
-        this.secretRepository = secretRepository;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -45,8 +34,8 @@ public class MainController {
     @GetMapping("/home")
     public String home(Model model, Principal principal) {
 
-        User currentUser = userRepository.findByUsername(principal.getName()).get();
-        List<Secret> userSecrets = secretRepository.findByUserUsername(principal.getName());
+        User currentUser = userService.findByUsername(principal.getName());
+        List<Secret> userSecrets = userService.getUsersSecrets(principal.getName());
         model.addAttribute("user",currentUser);
         model.addAttribute("secretsSize", userSecrets.size());
         return "home";

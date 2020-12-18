@@ -33,7 +33,7 @@ public class ShowController {
 
     @GetMapping("/show/details/{id}")
     public String getDetails(@PathVariable Long id, Model model) {
-        model.addAttribute("details", repository.findById(id).get());
+        model.addAttribute("details", repository.findById(id).orElse(null));
         log.info("Return details about secret #{}", id);
         return "secret-details";
     }
@@ -48,7 +48,7 @@ public class ShowController {
     @GetMapping("/show/edit/{id}")
     public String editSecret(@PathVariable Long id, Model model) {
         log.info("Edit secret #{}", id);
-        model.addAttribute("secret", repository.findById(id).get());
+        model.addAttribute("secret", repository.findById(id).orElse(null));
         return "add";
     }
 }
