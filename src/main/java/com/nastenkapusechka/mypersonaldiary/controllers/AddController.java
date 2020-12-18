@@ -4,6 +4,7 @@ import com.nastenkapusechka.mypersonaldiary.entities.Secret;
 import com.nastenkapusechka.mypersonaldiary.entities.User;
 import com.nastenkapusechka.mypersonaldiary.repo.SecretRepository;
 import com.nastenkapusechka.mypersonaldiary.repo.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
 
 
 @Controller
+@Slf4j
 public class AddController {
 
     private SecretRepository secretRepository;
     private UserRepository userRepository;
-    private final Logger log= LoggerFactory.getLogger(AddController.class);
 
     @Autowired
     public void setSecretRepository(SecretRepository secretRepository) {
@@ -59,6 +61,7 @@ public class AddController {
 
         User user = userRepository.findByUsername(principal.getName()).get();
         secret.setUser(user);
+        secret.setDateOfCreating(LocalDate.now());
         secretRepository.save(secret);
         log.info("Secret saved");
         return "redirect:/show";

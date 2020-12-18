@@ -20,10 +20,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "username", nullable = false, unique = true)
     @NotBlank(message = "Username is empty!")
     private String username;
-    @Column(name = "password", nullable = false)
+
     @NotBlank(message = "Password is empty!")
     @Size(min = 8, message = "Too short. <8 symbols")
     private String password;
@@ -34,16 +33,24 @@ public class User {
     private String repeatPassword;
 
     @NotBlank(message = "First name is empty!")
+    @Column(name = "first_name")
     private String firstName;
-    @NotBlank(message = "Last name is empty!")
-    private String lastName;
-    private LocalDate registrationDate;
-    private char gender;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @NotBlank(message = "Last name is empty!")
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "date_of_registration")
+    private LocalDate registrationDate;
+    private String gender;
+
+    @OneToMany(mappedBy = "user")
+    //, cascade = CascadeType.ALL
     private List<Secret> secretList;
 
-    {
-        this.registrationDate = LocalDate.now();
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+                joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+                inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private List<Role> roles;
 }

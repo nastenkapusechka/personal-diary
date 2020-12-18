@@ -2,8 +2,7 @@ package com.nastenkapusechka.mypersonaldiary.controllers;
 
 import com.nastenkapusechka.mypersonaldiary.entities.Secret;
 import com.nastenkapusechka.mypersonaldiary.repo.SecretRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +13,10 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class ShowController {
 
     private final SecretRepository repository;
-    private final Logger log = LoggerFactory.getLogger(ShowController.class);
 
     @Autowired
     public ShowController(SecretRepository repository) {

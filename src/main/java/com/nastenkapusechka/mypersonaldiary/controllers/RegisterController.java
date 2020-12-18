@@ -3,8 +3,7 @@ package com.nastenkapusechka.mypersonaldiary.controllers;
 import com.nastenkapusechka.mypersonaldiary.entities.User;
 import com.nastenkapusechka.mypersonaldiary.repo.UserRepository;
 import lombok.SneakyThrows;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,23 +15,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
+@Slf4j
 public class RegisterController {
 
-    private  UserRepository repository;
-    private PasswordEncoder passwordEncoder;
-
-    private final Logger log = LoggerFactory.getLogger(RegisterController.class);
+    //private final AuthenticationManager authenticationManager;
+    private final   UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public void setRepository(UserRepository repository) {
+    public RegisterController(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
-    }
-
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -54,7 +50,7 @@ public class RegisterController {
         Optional<User> optionalUser = repository.findByUsername(user.getUsername());
         if (optionalUser.isPresent()) {
             bindingResult.rejectValue("username", "", "User with this username is already exists!");
-            log.info("Add error - this username alredy exists");
+            log.info("Add error - this username already exists");
         }
 
         if (bindingResult.hasErrors()) {
@@ -66,8 +62,10 @@ public class RegisterController {
         user.setFirstName(user.getFirstName().trim());
         user.setLastName(user.getLastName().trim());
         user.setUsername(user.getUsername().trim());
+        user.setRegistrationDate(LocalDate.now());
         User info = repository.save(user);
         log.info("User {} saved", info.getId());
+
 
         return "redirect:/login";
     }

@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Data
 @Entity
-@Table(name = "secret")
+@Table(name = "secrets")
 @ToString
 public class Secret {
 
@@ -32,13 +32,7 @@ public class Secret {
     private LocalDate dateOfCreating;
 
     @ManyToOne
-//    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    {
-        dateOfCreating= LocalDate.now();
-
-    }
 
     @Override
     public boolean equals(Object o) {
