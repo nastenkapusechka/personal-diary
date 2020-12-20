@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Compliments</title>
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<div class="container">
+    <div class="text-center">
+        <div class="card">
+            <div class="card-header">
+                Don't be sad
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Compliment for You :)</h5>
+                <p class="card-text" th:text="${compliment}"></p>
+                <a href="/home" class="btn btn-primary">Go back</a>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br>
+</div>
+<div th:insert="blocks/footer"></div>
+</body>
+</html>

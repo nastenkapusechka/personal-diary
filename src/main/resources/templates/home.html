@@ -22,6 +22,7 @@
             <p class="card-text" th:text=" 'Your nickname is ' + ${user.username}"></p>
             <small class="card-text" th:text=" '(P.s. gender is ' + ${user.gender} + ')' "></small>
             <p class="card-text" th:text=" 'In your secret-personal-diary there are ' + ${secretsSize} + ' mysteries!' "></p>
+            <a class="btn btn-primary" href="/compliment" role="button">Are you sad? Press button!</a>
         </div>
         <div class="card-footer text-muted" th:text=" 'You have register in our application on ' + ${user.registrationDate}"></div>
     </div>
