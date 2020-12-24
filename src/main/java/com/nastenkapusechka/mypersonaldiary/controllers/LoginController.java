@@ -12,4 +12,16 @@ public class LoginController {
         model.addAttribute("error", true);
         return "login";
     }
+
+    @RequestMapping("/login-activated")
+    public String activatedLoginPage(Model model) {
+        model.addAttribute("activated", true);
+        return "login";
+    }
+
+    @RequestMapping("/login-activated-error")
+    public String activatedLoginPageError(Model model) {
+        model.addAttribute("activated", false);
+        return "login";
+    }
 }

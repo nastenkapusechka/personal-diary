@@ -20,6 +20,7 @@ public class UserDetailsImpl implements UserDetails {
     private final String gender;
     private final LocalDate dateOfRegistration;
     private final List<Secret> secrets;
+    private final boolean isEnabled;
     private final List<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(
@@ -31,6 +32,7 @@ public class UserDetailsImpl implements UserDetails {
             String gender,
             LocalDate dateOfRegistration,
             List<Secret> secrets,
+            boolean isEnabled,
             List<? extends GrantedAuthority> authorities)
     {
         this.id = id;
@@ -41,6 +43,7 @@ public class UserDetailsImpl implements UserDetails {
         this.gender = gender;
         this.dateOfRegistration = dateOfRegistration;
         this.secrets = secrets;
+        this.isEnabled = isEnabled;
         this.authorities = authorities;
     }
 
@@ -76,6 +79,6 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }

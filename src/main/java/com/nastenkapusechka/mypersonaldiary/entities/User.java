@@ -1,17 +1,13 @@
 package com.nastenkapusechka.mypersonaldiary.entities;
 
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
 
 @Data
-@ToString
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,29 +16,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Username is empty!")
     private String username;
-
-    @NotBlank(message = "Password is empty!")
-    @Size(min = 8, message = "Too short. <8 symbols")
     private String password;
 
-    @Transient
-    @NotBlank(message = "Password is empty!")
-    @Size(min = 8, message = "Too short. <8 symbols")
-    private String repeatPassword;
-
-    @NotBlank(message = "First name is empty!")
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank(message = "Last name is empty!")
     @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "date_of_registration")
     private LocalDate registrationDate;
     private String gender;
+
+    @Column(name = "is_activated")
+    private boolean isActivated;
+    @Column(name = "activation_code")
+    private String activationCode;
 
     @OneToMany(mappedBy = "user")
     //, cascade = CascadeType.ALL
@@ -53,4 +43,14 @@ public class User {
                 joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
                 inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", isActivated=" + isActivated +
+                '}';
+    }
 }

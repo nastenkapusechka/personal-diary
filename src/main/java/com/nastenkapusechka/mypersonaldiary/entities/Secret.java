@@ -2,7 +2,6 @@ package com.nastenkapusechka.mypersonaldiary.entities;
 
 
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,7 +12,6 @@ import java.util.Objects;
 @Data
 @Entity
 @Table(name = "secrets")
-@ToString
 public class Secret {
 
     @Id

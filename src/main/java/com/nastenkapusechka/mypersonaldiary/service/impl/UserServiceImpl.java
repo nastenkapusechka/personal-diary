@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -62,6 +63,7 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(user.getFirstName().trim());
         user.setLastName(user.getLastName().trim());
         user.setUsername(user.getUsername().trim());
+        user.setActivationCode(UUID.randomUUID().toString());
 
         List<Role> roles = new ArrayList<>();
         Role role = roleRepository.findByName("ROLE_USER");
@@ -90,5 +92,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Secret> getUsersSecrets(String username) {
         return secretRepository.findByUserUsername(username);
+    }
+
+    @Override
+    public boolean activateUser(String code) {
+        User user = userRepository.findByActivationCode(code);
+        if (user != null) {
+            log.info("IN activateUser - user with email: {} activated!", user.getUsername());
+            user.setActivationCode(null);
+            user.setActivated(true);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 }

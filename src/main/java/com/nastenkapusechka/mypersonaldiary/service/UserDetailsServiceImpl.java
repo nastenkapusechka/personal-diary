@@ -22,6 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
         User user = userService.findByUsername(s);
+
         if (user == null) {
             throw new UsernameNotFoundException("User with username " + s + " doesn't exist");
         }

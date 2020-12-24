@@ -21,6 +21,7 @@ public final class UserDetailsFactory {
                 user.getGender(),
                 user.getRegistrationDate(),
                 user.getSecretList(),
+                user.isActivated(),
                 mapRolesToAuthorities(user.getRoles())
         );
     }

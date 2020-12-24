@@ -122,4 +122,13 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="1.0.9" author="nastya.bakhshyieva">
+        <addColumn tableName="users">
+            <column name="is_activated" type="boolean" defaultValue="false"/>
+        </addColumn>
+        <addColumn tableName="users">
+            <column name="activation_code" type="varchar(255)" defaultValue="null"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

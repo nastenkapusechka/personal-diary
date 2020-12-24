@@ -18,4 +18,6 @@ public interface UserService {
     List<User> getAllUsers();
 
     List<Secret> getUsersSecrets(String username);
+
+    boolean activateUser(String code);
 }
