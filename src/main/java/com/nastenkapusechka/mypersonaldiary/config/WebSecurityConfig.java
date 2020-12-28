@@ -45,6 +45,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and()
+                .rememberMe().key("secret")
+                .userDetailsService(service)
+                .and()
                 .csrf().disable();
     }
 
