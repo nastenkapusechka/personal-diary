@@ -19,7 +19,7 @@ So, that's not all, of course)
 # TODO
 1. If you forgot password, you can restore it by mail
 
-2. Add user's profile, where user would choose avatar and background (pictures)
+2. Fix avatar (not displayed)
 
 3. Add rePapcha
 
