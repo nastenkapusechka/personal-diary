@@ -1,6 +1,6 @@
 package com.nastenkapusechka.mypersonaldiary.controllers;
 
-import com.nastenkapusechka.mypersonaldiary.entities.RegisterUser;
+import com.nastenkapusechka.mypersonaldiary.dto.RegisterUser;
 import com.nastenkapusechka.mypersonaldiary.entities.User;
 import com.nastenkapusechka.mypersonaldiary.service.MailSender;
 import com.nastenkapusechka.mypersonaldiary.service.impl.UserServiceImpl;

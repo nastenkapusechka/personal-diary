@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<div class="container mt-5">
+
+    <form action="/settings/change_name" method="post" th:object="${user}" class="container-sm">
+        <h1>Change first name and last name</h1>
+        <input class="form-control w-75" th:field="*{firstName}" th:value="*{firstName}" type="text">
+        <input class="form-control mt-1 w-75" th:field="*{lastName}" th:value="*{lastName}" type="text">
+
+        <input type="hidden" th:field="*{id}" th:value="*{id}">
+        <input type="hidden" th:field="*{username}" th:value="*{username}">
+        <input type="hidden" th:field="*{password}" th:value="*{password}">
+        <input type="hidden" th:field="*{image}" th:value="*{image}">
+<!--        <input type="hidden" th:field="*{isActivated()}" th:value="*{isActivated()}">-->
+        <input type="hidden" th:field="*{activationCode}" th:value="*{activationCode}">
+        <input type="hidden" th:field="*{registrationDate}" th:value="*{registrationDate}">
+        <input type="hidden" th:field="*{gender}" th:value="*{gender}">
+        <small class="text-danger" th:text="${emptyString}"></small>
+        <small class="text-success" th:text="${successName}"></small>
+        <p><button class="btn btn-primary mt-3" type="submit">Submit</button></p>
+        <hr>
+    </form>
+    <form method="post" action="/settings/change-password" class="container-sm mt-3">
+        <h1>Change password</h1>
+        <input type="password" class="form-control mt-1 w-75" name="oldPassword" placeholder="Old password">
+        <input type="password" class="form-control mt-1 w-75" name="newPassword" placeholder="New password">
+        <input type="password" class="form-control mt-1 w-75" name="repeatPassword" placeholder="Repeat password">
+        <small class="text-danger" th:text="${oldPasswordErr}"></small>
+        <small class="text-danger" th:text="${repeatPasswordErr}"></small>
+        <small class="text-success" th:text="${success}"></small>
+        <p><button class="btn btn-primary mt-3" type="submit">Submit</button></p>
+        <hr>
+    </form>
+    <form method="post" action="/settings/load-avatar" enctype="multipart/form-data" class="container-sm mt-3">
+        <h1>Load new avatar</h1>
+        <input class="form-control mt-1 w-75" type="file" name="file" id="file">
+        <small class="text-danger" th:text="${uploadErr}"></small>
+        <small class="text-success" th:text="${successFile}"></small>
+        <p><button class="btn btn-primary mt-3" type="submit">Submit</button></p>
+        <hr>
+    </form>
+</div>
+<div th:insert="blocks/footer"></div>
+</body>
+</html>

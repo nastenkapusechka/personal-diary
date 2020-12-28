@@ -1,12 +1,16 @@
-package com.nastenkapusechka.mypersonaldiary.entities;
+package com.nastenkapusechka.mypersonaldiary.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class RegisterUser {
 
     @NotBlank(message = "Email is empty!")
@@ -28,4 +32,5 @@ public class RegisterUser {
     private String lastName;
 
     private String gender;
+
 }

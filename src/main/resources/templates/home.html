@@ -17,6 +17,7 @@
             Info
         </div>
         <div class="card-body">
+            <img th:src="${image}" style="width: 30%" class="card-img-top" alt="Your avatar">
             <h5 class="card-title">A bit about you)</h5>
             <p class="card-text" th:text=" 'Hello, ' + ${user.firstName} + ' ' + ${user.lastName} + '!' "></p>
             <p class="card-text" th:text=" 'Your nickname is ' + ${user.username}"></p>
@@ -27,6 +28,8 @@
         <div class="card-footer text-muted" th:text=" 'You have register in our application on ' + ${user.registrationDate}"></div>
     </div>
 </div>
+</div>
 <div th:insert="blocks/footer"></div>
+
 </body>
 </html>
