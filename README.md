@@ -3,9 +3,7 @@ Your own personal secured diary!
 
 So, what does the application can do?
 
-1. You can register and verificate your account by link which will come to the mail
-
-2. After registration you will come to the home page. It collects the information about you and, if you are sad, you can press the button and get the complment :)
+1. You can registerpress the button and get the complment :)
 Compliments are taken from a third party site - https://complimentr.com/api, and parse by Gson framework
 
 3.This application secured by Spring Security - and all information stored encrypted in database
